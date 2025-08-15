@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'photogallery_project_app'  # Custom app for photo gallery
+    'photogallery_project_app',  # Custom app for photo gallery
 ]
 
 MIDDLEWARE = [
@@ -125,3 +125,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Redirect settings
+LOGIN_URL = 'login'                # If a user is not logged in, send them here
+LOGIN_REDIRECT_URL = 'home'        # After logging in, send them here
+LOGOUT_REDIRECT_URL = 'home'       # After logging out, send them here
