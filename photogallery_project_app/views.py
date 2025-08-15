@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from .models import Photo
 
 def home(request):
     photos = Photo.objects.all().order_by('-date_uploaded')  # newest first
@@ -28,8 +29,7 @@ def upload_photo(request):
     else:
         form = PhotoForm()
     return render(request, 'upload_photo.html', {'form': form})
-
-@login_required
+#@login_required
 def upload_photo(request):
     if request.method == 'POST':
         form = PhotoForm(request.POST, request.FILES)
@@ -40,5 +40,9 @@ def upload_photo(request):
     else:
         form = PhotoForm()
     return render(request, 'upload_photo.html', {'form': form})
+
+def photo_detail(request, photo_id):
+    photo = get_object_or_404(Photo, id=photo_id)
+    return render(request, 'photo_detail.html', {'photo': photo})
 
 # Create your views here.
