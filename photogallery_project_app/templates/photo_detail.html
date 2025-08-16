@@ -58,7 +58,7 @@
             color: #aaa;
         }
         .like-section {
-            margin-top: 15px;
+            margin-top: 20px;
         }
         .like-btn {
             display: inline-block;
@@ -71,6 +71,23 @@
             text-decoration: none;
         }
         .like-btn:hover {
+            background: #d2b48c;
+            color: #000;
+        }
+        .tags {
+            margin-top: 15px;
+        }
+        .tag {
+            display: inline-block;
+            background: #333;
+            color: #d2b48c;
+            padding: 5px 10px;
+            margin: 5px 5px 0 0;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            text-decoration: none;
+        }
+        .tag:hover {
             background: #d2b48c;
             color: #000;
         }
@@ -100,8 +117,19 @@
         <div class="photo-meta">
             Uploaded by {{ photo.uploaded_by.username }} on {{ photo.date_uploaded|date:"F j, Y" }}
         </div>
+
+        <!-- Tags section -->
+        {% if photo.tag_list %}
+        <div class="tags">
+            <strong>Tags:</strong>
+            {% for tag in photo.tag_list %}
+                <a href="{% url 'home' %}?tag={{ tag }}" class="tag">{{ tag }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
 
+    <!-- Like system -->
     <div class="like-section">
         <p><strong>{{ photo.likes.count }} likes</strong></p>
         {% if user.is_authenticated %}
