@@ -23,3 +23,4 @@ class Photo(models.Model):
 
     def tag_list(self):
         return [tag.strip() for tag in self.tags.split(',')]
+
