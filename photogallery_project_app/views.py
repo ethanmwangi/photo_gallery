@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-
+from django.contrib.auth.models import User
 from .models import Photo
 from .forms import PhotoForm
 
@@ -84,3 +84,9 @@ def toggle_like(request, photo_id):
     if next_url:
         return HttpResponseRedirect(next_url)
     return redirect('photo_detail', photo_id=photo.id)
+
+@login_required
+def profile(request, username):
+    user = get_object_or_404(User, username=username)
+    photos = Photo.objects.filter(uploaded_by=user).order_by('-date_uploaded')
+    return render(request, 'profile.html', {'profile_user': user, 'photos': photos})
