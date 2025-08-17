@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.models import User
-from .models import profile, Photo
+from .models import  Photo
 from .forms import PhotoForm
 from django.shortcuts import redirect
 from .forms import UserUpdateForm, ProfileUpdateForm
