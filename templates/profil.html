@@ -68,6 +68,8 @@
             color: #d2b48c;
             font-size: 0.9rem;
             margin-right: 10px;
+            text-decoration: none;
+            font-weight: bold;
         }
         .actions a:hover {
             color: #fff;
@@ -108,8 +110,8 @@
                 <p>{{ photo.title }}</p>
                 {% if user == profile_user %}
                     <div class="actions">
-                        <a href="#">Edit</a>
-                        <a href="#">Delete</a>
+                        <a href="{% url 'edit_photo' photo.id %}">Edit</a>
+                        <a href="{% url 'delete_photo' photo.id %}">Delete</a>
                     </div>
                 {% endif %}
             </div>

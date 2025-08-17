@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Edit Profile</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -25,15 +25,15 @@
             color: #fff;
         }
         .container {
-            max-width: 400px;
-            margin: 60px auto;
+            max-width: 600px;
+            margin: 40px auto;
             padding: 30px;
             background-color: #1a1a1a;
             border-radius: 8px;
         }
         h2 {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         form {
             display: flex;
@@ -42,7 +42,7 @@
         form p {
             margin-bottom: 15px;
         }
-        input {
+        input, textarea, select {
             width: 100%;
             padding: 10px;
             border-radius: 6px;
@@ -64,32 +64,20 @@
             background-color: #fff;
             color: #000;
         }
-        p {
-            text-align: center;
-            margin-top: 20px;
-        }
-        p a {
-            color: #d2b48c;
-            font-weight: bold;
-        }
-        p a:hover {
-            color: #fff;
-        }
     </style>
 </head>
 <body>
 <header>
-    <a href="{% url 'home' %}">← Back</a>
+    <a href="{% url 'profile' user.username %}">← Back</a>
 </header>
 
 <div class="container">
-    <h2>Login</h2>
-    <form method="post">
+    <h2>Edit Profile</h2>
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Login</button>
+        <button type="submit">Save Changes</button>
     </form>
-    <p>Don’t have an account? <a href="{% url 'register' %}">Register</a></p>
 </div>
 </body>
 </html>
