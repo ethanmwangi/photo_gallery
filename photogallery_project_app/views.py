@@ -29,6 +29,12 @@ def home(request):
         'current_tag': current_tag,
     }
     return render(request, 'home.html', context)
+    query = request.GET.get('q')  # get search query
+    if query:
+        photos = Photo.objects.filter(title__icontains=query) | Photo.objects.filter(tags__icontains=query)
+    else:
+        photos = Photo.objects.all()
+    return render(request, 'home.html', {'photos': photos, 'query': query})
 
 
 def register(request):
